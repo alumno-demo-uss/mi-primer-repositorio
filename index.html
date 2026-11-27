@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi primera página con GitHub Pages</title>
+<style>
+  :root {
+    --navy: #052A4A; --azul: #297FD5; --oro: #C5A961;
+    --fondo: #F4F7FB; --texto: #1C2733; --suave: #5B6B7C;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--texto); background: var(--fondo); line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0B4A7E 60%, var(--azul) 100%);
+    color: #fff; padding: 72px 24px 96px; text-align: center; position: relative; overflow: hidden;
+  }
+  header::after {
+    content: ""; position: absolute; inset: auto -10% -60px -10%; height: 120px;
+    background: var(--fondo); border-radius: 50% 50% 0 0;
+  }
+  .avatar {
+    width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 20px;
+    display: grid; place-items: center; font-size: 44px;
+    background: rgba(255,255,255,.12); border: 3px solid var(--oro);
+  }
+  h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -.5px; }
+  header p { opacity: .85; margin-top: 8px; font-size: 18px; }
+  .chip {
+    display: inline-block; margin-top: 20px; padding: 6px 14px; border-radius: 99px;
+    background: var(--oro); color: var(--navy); font-weight: 600; font-size: 14px;
+  }
+  main { max-width: 880px; margin: -40px auto 0; padding: 0 20px 60px; position: relative; z-index: 1; }
+  .tarjeta {
+    background: #fff; border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(5,42,74,.08);
+  }
+  h2 { color: var(--navy); font-size: 22px; margin-bottom: 12px; }
+  .pasos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 8px; }
+  .paso {
+    border: 1px solid #E3E9F1; border-radius: 12px; padding: 18px; transition: transform .2s, box-shadow .2s;
+  }
+  .paso:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(41,127,213,.15); }
+  .paso b { display: block; color: var(--azul); font-size: 15px; margin-bottom: 4px; }
+  .paso span { color: var(--suave); font-size: 14px; }
+  .saludo { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  input {
+    flex: 1; min-width: 200px; padding: 12px 14px; font-size: 16px;
+    border: 1px solid #CBD5E1; border-radius: 10px;
+  }
+  input:focus { outline: 2px solid var(--azul); border-color: transparent; }
+  button {
+    padding: 12px 22px; font-size: 16px; font-weight: 600; border: 0; border-radius: 10px;
+    background: var(--navy); color: #fff; cursor: pointer;
+  }
+  button:hover { background: var(--azul); }
+  #respuesta { margin-top: 14px; font-size: 18px; color: var(--navy); min-height: 28px; }
+  footer { text-align: center; color: var(--suave); font-size: 14px; padding: 0 20px 40px; }
+  footer a { color: var(--azul); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="avatar">👩‍💻</div>
+  <h1>Hola, soy Alumno Demo</h1>
+  <p>Estudiante del Taller de Programación II</p>
+  <span class="chip">Publicada con GitHub Pages</span>
+</header>
+
+<main>
+  <section class="tarjeta">
+    <h2>Sobre esta página</h2>
+    <p>Esta página es un solo archivo <code>index.html</code> guardado en mi repositorio
+      <b>mi-primer-repositorio</b>. GitHub Pages lo publica gratis en internet:
+      cada vez que hago un commit, la página se actualiza sola.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Lo que aprendí en GitHub</h2>
+    <div class="pasos">
+      <div class="paso"><b>1. Repositorio</b><span>La carpeta de mi proyecto en la nube.</span></div>
+      <div class="paso"><b>2. Commit</b><span>Una foto de mis cambios con un mensaje claro.</span></div>
+      <div class="paso"><b>3. Rama</b><span>Una copia para probar ideas sin romper main.</span></div>
+      <div class="paso"><b>4. Pull Request</b><span>Pedir que revisen y unan mis cambios.</span></div>
+      <div class="paso"><b>5. Git local</b><span>clone, add, commit y push desde mi computador.</span></div>
+      <div class="paso"><b>6. Pages</b><span>Publicar esta página con un par de clics.</span></div>
+    </div>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Pruébalo: el saludo de hola.py, ahora en la web</h2>
+    <p>Mi programa <code>hola.py</code> pedía tu nombre en la terminal. Aquí hace lo mismo con JavaScript:</p>
+    <div class="saludo">
+      <input id="nombre" placeholder="¿Cómo te llamas?" autocomplete="off">
+      <button id="saludar">Saludar</button>
+    </div>
+    <p id="respuesta"></p>
+  </section>
+</main>
+
+<footer>
+  Hecho con HTML y CSS · Código en
+  <a href="https://github.com/alumno-demo-uss/mi-primer-repositorio">github.com/alumno-demo-uss/mi-primer-repositorio</a>
+</footer>
+
+<script>
+  const campo = document.getElementById("nombre");
+  const respuesta = document.getElementById("respuesta");
+  function saludar() {
+    const nombre = campo.value.trim();
+    respuesta.textContent = nombre
+      ? `¡Hola, ${nombre}! Bienvenido a GitHub Pages. 🎉`
+      : "Escribe tu nombre primero.";
+  }
+  document.getElementById("saludar").addEventListener("click", saludar);
+  campo.addEventListener("keydown", e => { if (e.key === "Enter") saludar(); });
+</script>
+</body>
+</html>
